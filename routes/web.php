@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FacebookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
+// Example of a route with a controller
+Route::get('/dashboard', [FacebookController::class, 'dashboard']);
